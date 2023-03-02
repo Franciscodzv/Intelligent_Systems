@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 #Load data from csv file
 df = pd.read_csv('/Users/pacodiaz/Downloads/music_genre.csv', usecols=['danceability', 'energy', 'instrumentalness','popularity','music_genre'])
 
-#remove rows with empty values
+#remove rows with null values
 df = df.dropna()
 
 #remove rows with 0 popularity
@@ -30,6 +30,7 @@ df = df[df['music_genre'] != '']
 
 features = ['danceability', 'energy', 'instrumentalness','music_genre']
 
+#my data
 df_x = df[features]
 
 
@@ -64,23 +65,28 @@ df_x.loc[df_x['music_genre'] == 'Rap', 'music_genre'] = 8
 df_x.loc[df_x['music_genre'] == 'Rock', 'music_genre'] = 9
 
 
-
 df_y = df['popularity']
 
-# Use 20% of the data for testing
-test_size = -1 *math.floor(df_y.size * 0.2)
+#Use 80% of data for training
+test_size_80 = math.floor(len(df) * 0.8)
+
 
 # Split the data into training/testing sets
-x_train = df_x[:test_size]
-x_test = df_x[test_size:]
-y_train = df_y[:test_size]
-y_test = df_y[test_size:]
+x_train = df_x[:test_size_80]
+x_test = df_x[test_size_80:]
+y_train = df_y[:test_size_80]
+y_test = df_y[test_size_80:]
 
 # Create linear regression object
 regr = linear_model.LinearRegression()
 
 # Train the model
 regr.fit(x_train, y_train)
+
+# Make predictions using the testing set
+y_pred = regr.predict(x_test)
+
+
 
 #get coefficients
 print('Coefficients: ', regr.coef_)
@@ -94,6 +100,9 @@ while answer == True:
     danceability = float(input("Enter danceability: "))
     energy = float(input("Enter energy: "))
     instrumentalness = float(input("Enter instrumentalness: "))
+    
+
+
 
     #user input for genre
     genre_input = input("Enter genre: ")
@@ -134,14 +143,25 @@ while answer == True:
         break
 
     #create dataframe with user input
-    df_pred = pd.DataFrame([[danceability, energy, instrumentalness, genre]], columns=features)
+    df_pred = pd.DataFrame([[danceability, energy, instrumentalness,genre]], columns=features)
 
     #predict popularity using user input
+
+
     
     popularity = regr.predict(df_pred)[0]
 
     #print popularity with only 2 deciamals
     print("Predicted popularity: ", round(popularity, 2))
+
+    #plot predicted popularity vs actual popularity
+    plt.scatter(y_test, y_pred, color='blue')
+    plt.title('Predicted Popularity vs Actual Popularity')
+    plt.xlabel('Actual Popularity')
+    plt.ylabel('Predicted Popularity')
+    plt.show()
+
+
    
 
 
@@ -188,7 +208,10 @@ while answer == True:
         plt.ylabel('Popularity')
         plt.show()
 
-       
+
+
+    #here I'm plotting my features vs popularity for each genre, these are not predictions
+    #this is the actual data for each genre        
     elif genre == 1:
         #plot df_ani
         plt.scatter(df_ani['danceability'], df_ani['popularity'], color='black')
@@ -375,8 +398,7 @@ while answer == True:
         plt.ylabel('Popularity')
         plt.show()
 
-
-
+    #plot prediction 
 
 
 
