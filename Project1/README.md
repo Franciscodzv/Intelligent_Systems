@@ -21,6 +21,8 @@ energy: 0.7
 instrumentalness: 0.25
 Genre: Rock
 
+### Make another prediction?
+
 Once you have entered the values, the code will print out the predicted popularity of the song. Then it will plot data regarding the prediction and the features. For example, it will plot the predicted values vs the real values. It will also plot each feature vs the popularity, this is done for analysis purposes.
 
 After this you will be asked if you want to make a new prediction. If you enter "y" || "Y" || "Yes" || "yes" the code will run again, if you enter "n" || "N" || "No" || "no" the code will stop running.
