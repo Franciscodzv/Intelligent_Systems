@@ -43,6 +43,6 @@ After running the code, we get the following popularity prediction: 32.38 This m
 
 The answer is no. 
 
-![alt text](https://github.com/Franciscodzv/Intelligent_Systems/blob/master/Project1/prediction_vs_actual.png "Prediction vs Actual")
+![alt text](https://github.com/Franciscodzv/Intelligent_Systems/blob/master/Project1/prediction_vs_actual.png "Prediction vs Actual", width=100)
 
 
