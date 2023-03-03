@@ -46,7 +46,7 @@ The answer is no.
 Let's look at this plot:
 ![alt text](https://github.com/Franciscodzv/Intelligent_Systems/blob/master/Project1/prediction_vs_actual.png "Prediction vs Actual")
 
-As we can see some of my predicted values are accurate and some aren't, this means that my model is Overfitting. What this means is that my model is giving accurate predictions for training data, but ultimately fails when tryning to predict new data. 
+From the predictions, we can see that while some of the values are accurate, others are not. This indicates that the model may be overfitting, which implies that it is performing well on the training data but struggles when presented with new data.
 
 Since my data contains thousands of rows there might be noisy data feeding my model irrelevant information. 
 
