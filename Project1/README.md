@@ -26,3 +26,23 @@ Genre: Rock
 Once you have entered the values, the code will print out the predicted popularity of the song. Then it will plot data regarding the prediction and the features. For example, it will plot the predicted values vs the real values. It will also plot each feature vs the popularity, this is done for analysis purposes.
 
 After this you will be asked if you want to make a new prediction. If you enter "y" || "Y" || "Yes" || "yes" the code will run again, if you enter "n" || "N" || "No" || "no" the code will stop running.
+
+
+## Analysis
+Let's run the code and enter the following values:
+
+Danceability: 0.50
+
+Energy: 0.75
+
+Instrumentalness: 0.33
+
+Genre: Alternative
+
+After running the code, we get the following popularity prediction: 32.38 This means that the song has a 32.38% chance of being popular. But if my coefficient of determination is of 0.45 then can we trust this prediction?
+
+The answer is no. 
+
+![alt text](https://github.com/Franciscodzv/Intelligent_Systems/blob/master/Project1/prediction_vs_actual.png "Prediction vs Actual")
+
+
