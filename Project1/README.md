@@ -3,6 +3,24 @@ This project uses Linear regression to predict how popular a song can be based o
 
 The data contains several columns, but I only used the following columns: Energy, Danceability, and Instrumentalness. I also used the column "Popularity" as the target variable. I used these columns because I want to know how much the actual music and vibe of the song affects its popularity.
 
-As of this project I was only able to get my coefficient of determination is 0.45. This is a good start, however, for making more precise predictions I would need to either use a different model or to handle the data and "clean" it before making the predictions.
+As of this project I was only able to get my coefficient of determination is 0.45. This is a good start, however, for making more precise predictions I would need to either use a different model or to handle the data and "clean" it before making the predictions. I will do this for another handin and I will compare and contrast the results.
+
+
 
 ## How to run the code
+Whenever you want to run the code, you need to make sure that you have the following packages installed: pandas, numpy, matplotlib, sklearn and math. 
+
+Once you have installed these packages, you can run the code by running the file "project1.py" in the folder "Project1".
+
+Once the code is running, you will be prompted to enter the values of the features we're using to predict the popularity of the song. The values you enter should be between 0 and 1. The only feature that is not numerical is the music genre, for this feature you will enter a String. The prompt specifies which feature you are entering the value for.
+
+Examples:
+
+Danceability: 0.5
+energy: 0.7
+instrumentalness: 0.25
+Genre: Rock
+
+Once you have entered the values, the code will print out the predicted popularity of the song. Then it will plot data regarding the prediction and the features. For example, it will plot the predicted values vs the real values. It will also plot each feature vs the popularity, this is done for analysis purposes.
+
+After this you will be asked if you want to make a new prediction. If you enter "y" || "Y" || "Yes" || "yes" the code will run again, if you enter "n" || "N" || "No" || "no" the code will stop running.

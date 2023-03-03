@@ -88,9 +88,7 @@ y_pred = regr.predict(x_test)
 
 
 
-#get coefficients
-print('Coefficients: ', regr.coef_)
-print('Intercept: ', regr.intercept_)
+#get R2
 print('R2: ', round(regr.score(x_test, y_test),2))
 
 answer = True
