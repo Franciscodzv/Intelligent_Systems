@@ -1,4 +1,5 @@
 import numpy  #numpy is used to make some operrations with arrays more easily
+import time
 
 
 __errors__= [];  #global variable to store the errors/loss for visualisation
@@ -33,7 +34,8 @@ def show_errors(params, samples,y):
 #	print(samples)
 	for i in range(len(samples)):
 		hyp = h(params,samples[i])
-		print( "hyp  %f  y %f " % (hyp,  y[i]))   
+		print( "hypothesis:  %f  y: %f " % (hyp,  y[i]))   
+		#time.sleep(0.00005)
 		error = hyp - y[i]
 		error_acum = + error**2 # this error is the original cost function, (the one used to make updates in GD is the derivated verssion of this formula)
 	mean_error_param= error_acum / len(samples)
@@ -166,7 +168,7 @@ with open('/Users/pacodiaz/Documents/Intelligent Systems/Intelligent_Systems/Pro
 #samples = [[1,1],[2,2],[3,3],[4,4],[5,5],[2,2],[3,3],[4,4]]
 #y = [2,4,6,8,10,2,5.5,16]
 
-alfa =.01  #  learning rate
+alfa =.015 #  learning rate
 for i in range(len(samples)):
 	if isinstance(samples[i], list):
 		samples[i]=  [1]+samples[i]
