@@ -63,42 +63,8 @@ def GD(params, samples, y, alfa):
 		temp[j] = params[j] - alfa * ( 1 / len(samples) ) * acum  #Subtraction of original parameter value with learning rate included.
 	return temp
 
-
-
-def scaling(samples):
-	"""Normalizes sample values so that gradient descent can converge
-	Args:
-		params (lst) a list containing the corresponding parameter for each element x of the sample
-	Returns:
-		samples(lst) a list with the normalized version of the original samples
-	"""
-	acum =0
-	samples = numpy.asarray(samples).T.tolist()   #[[1,1],[2,2],[3,3],[4,4],[5,5]]
-	for i in range(1,len(samples)):	
-		for j in range(len(samples[i])):
-			acum = acum + samples[i][j]
-		avg = acum/(len(samples[i]))
-		max_val = max(samples[i])
-		#print("avg %f" % avg)
-		#print(max_val)
-		for j in range(len(samples[i])):
-			#print(samples[i][j])
-			samples[i][j] = (samples[i][j] - avg)/max_val  #Mean scaling
-	return numpy.asarray(samples).T.tolist()
-
-
-#  univariate example
-#params = [0,0]
-#samples = [1,2,3,4,5]
-#y = [2,4,6,8,10]
-
-#  multivariate example trivial
-#make a matrix called samples
-
-
 samples = [[],[],[]]
 params = [0,0,0,0]
-y = []
 
 
 
@@ -113,6 +79,7 @@ with open('/Users/pacodiaz/Documents/Intelligent Systems/Intelligent_Systems/Pro
     longitudes = []
     years = []
     pricesY = []
+    original_samples = []
     for row in reader:
 	    #get all latitudes and longitudes
         #if there are spaces in the data, remove them
@@ -127,7 +94,9 @@ with open('/Users/pacodiaz/Documents/Intelligent Systems/Intelligent_Systems/Pro
         year = int(year[-4:])
         years.append(year)
         pricesY.append(float(row[5])) #price
-        
+	
+    for i in range(len(latitudes)):
+        original_samples.append([1,latitudes[i],longitudes[i],years[i]])
 	
 
     # Apply min-max normalization to the latitudes
@@ -175,18 +144,21 @@ for i in range(len(samples)):
 	else:
 		samples[i]=  [1,samples[i]]
 print ("original samples:")
-print (samples)
-samples = scaling(samples)
+print (original_samples[20])
+#samples = scaling(samples)
 print ("scaled samples:")
-print (samples)
+print (samples[20])
+
+input("Press Enter to continue...")
 
 
 epochs = 0
+final_params = []
 
 while True:  #  run gradient descent until local minima is reached
 	oldparams = list(params)
 	print (params)
-	params=GD(params, samples,pricesY,alfa)	
+	params = GD(params, samples,pricesY,alfa)	
 	show_errors(params, samples, pricesY)  #only used to show errors, it is not used in calculation
 	print (params)
 	epochs = epochs + 1
@@ -195,8 +167,22 @@ while True:  #  run gradient descent until local minima is reached
 		print(samples)
 		print ("final params:")
 		print(params)
+		final_params = params
 		break
 
 import matplotlib.pyplot as plt  #use this to generate a graph of the errors/loss so we can see whats going on (diagnostics)
 plt.plot(__errors__)
 plt.show()
+
+user_input = input("Do you want to predict a price? (y/n) ")
+
+while user_input == 'y' or user_input == 'Y':
+	scaled_lat = (float(input("Enter latitude: ")) - min_lat) / (max_lat - min_lat)
+	scaled_long = (float(input("Enter longitude: ")) - min_long) / (max_long - min_long)
+	scaled_year = (float(input("Enter year: ")) - min_years) / (max_years - min_years)
+	predictedY = final_params[0] + final_params[1]*scaled_lat + final_params[2]*scaled_long + final_params[3]*scaled_year
+	print("Predicted price: ", predictedY)
+	user_input = input("Do you want to predict another price? (y/n) ")
+	
+print("Thank you for using our gasoline price predictor!")
+	
