@@ -236,8 +236,7 @@ for i in range(len(latitudes_test)):
 	predictedY_test = final_params[0] + final_params[1]*scaled_lat_test + final_params[2]*scaled_long_test + final_params[3]*scaled_year_test
 	predicted_prices_test.append(predictedY_test)
 	print("Predicted price with test set: ", predictedY_test, "Actual price: ", pricesY_test[i])
-
-
+	
 
 
 
