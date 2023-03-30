@@ -5,6 +5,9 @@ import random as rand
 
 
 
+
+
+
 __errors__= [];  #global variable to store the errors/loss for visualisation
 
 def h(params, sample):
@@ -250,11 +253,13 @@ for i in range(len(latitudes)):
     predicted_prices_train.append(predictedY)
     print("Predicted price with training set: ", predictedY, "Actual price: ", pricesY[i])
 
+
 print("R squared test set: ", r_squared(pricesY_test, predicted_prices_test))
 print("R squared train set: ", r_squared(pricesY, predicted_prices_train))
 print("R squared difference:", r_squared(pricesY_test, predicted_prices_test) - r_squared(pricesY, predicted_prices_train))
 print("MSE test error: ",mean_squared_error(predicted_prices_test, pricesY_test))
 print("MSE train error: ",mean_squared_error(predicted_prices_train, pricesY))
+print("Final parameters: ", final_params)
     
 
 
