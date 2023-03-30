@@ -1,7 +1,7 @@
 import numpy as np #numpy is used to make some operrations with arrays more easily
 import time
 import random as rand
-from sklearn.metrics import r2_score
+
 
 
 
